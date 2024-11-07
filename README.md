@@ -1,2 +1,2 @@
-# Platformer-2D
+# 2d-platformer
  
