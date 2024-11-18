@@ -10,7 +10,7 @@ public class Mover : MonoBehaviour
     [SerializeField] private float _speed = 4f;
 
     public readonly int Speed = Animator.StringToHash(nameof(Speed));
-    public readonly int IsJumping = Animator.StringToHash(nameof(IsJumping));
+    public readonly int Jumping = Animator.StringToHash(nameof(Jumping));
     public Animator Animator;
     private float _horizontalMove;
     private float _jumpingPower = 8f;
@@ -25,13 +25,13 @@ public class Mover : MonoBehaviour
         if (_isJump)
         {
             _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _jumpingPower);
-            Animator.SetBool(IsJumping, true);
+            Animator.SetBool(Jumping, true);
             _isJump = false;
         }
 
         if (_isJump == false)
         {
-            Animator.SetBool(IsJumping, false);
+            Animator.SetBool(Jumping, false);
         }
     }
 
@@ -40,7 +40,7 @@ public class Mover : MonoBehaviour
         _horizontalMove = Input.GetAxisRaw(Horizontal);
         Animator.SetFloat(Speed, Mathf.Abs(_horizontalMove));
 
-        if (Input.GetKeyDown(_jumpKey) && IsGrounded())
+        if (Input.GetKeyDown(_jumpKey) && IsGrounded())  
         {
             _isJump = true;
         }
